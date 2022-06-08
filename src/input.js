@@ -23,3 +23,8 @@ window.addEventListener('mousemove', (evt) => {
   }
 });
 
+window.addEventListener('keypress', (evt) => {
+  evt.preventDefault();
+  evt.stopPropagation();
+  bus.emit('keypress', { key: evt.key });
+});
