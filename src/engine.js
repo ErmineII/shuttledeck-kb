@@ -125,7 +125,7 @@ export default function Engine() {
   
   bus.on('keypress', (evt) => {
     if (/[0-9]/.test(evt.key)) {
-      playCard(parseInt(evt.key));
+      playCard(parseInt(evt.key) - 1);
     }
   });
 
