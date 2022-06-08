@@ -99,9 +99,8 @@ export default function Engine() {
     }
     return hov;
   };
-
-  bus.on('tap', (evt) => {
-    var hov = getHoverIndex(evt);
+  
+  const playCard = (hov) => {
     if (hov>=0 && hand[hov] != null) {
       cost = hand[hov].cost;
       if (energy >= cost) {
@@ -116,6 +115,17 @@ export default function Engine() {
         removeFromHand(hov);
         pullFromDeckToSlot(hov);
       }
+    }
+  };
+
+  bus.on('tap', (evt) => {
+    var hov = getHoverIndex(evt);
+    playCard(hov);
+  });
+  
+  bus.on('keypress', (evt) => {
+    if (/[0-9]/.test(evt.key)) {
+      playCard(parseInt(evt.key));
     }
   });
 
